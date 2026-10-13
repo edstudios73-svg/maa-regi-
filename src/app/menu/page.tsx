@@ -21,7 +21,7 @@ export default function MenuPage() {
     <>
       <PageHero
         eyebrow="Restaurant Menu"
-        title="Something Delicious Is Waiting."
+        title={<>Something Delicious <em className="accent">Is Waiting.</em></>}
         description={
           <>
             Explore the menu and find something to enjoy. Availability changes through the day, so items are always confirmed

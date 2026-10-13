@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Croissant, MapPin, Navigation, PartyPopper, UtensilsCrossed } from "lucide-react";
-import { featuredCategories } from "@/data/categories";
-import { featuredProducts } from "@/data/products";
+import { featuredCategories, menuCategories } from "@/data/categories";
+import { featuredProducts, menuProducts } from "@/data/products";
 import { business, fullAddress, IS_DEMO } from "@/config/site";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -10,6 +10,8 @@ import { LinkButton } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { ProductCard } from "@/components/catalog/product-card";
 import { MapEmbed } from "@/components/ui/map-embed";
+import { Marquee } from "@/components/ui/marquee";
+import { Ornament } from "@/components/ui/ornament";
 
 export default function HomePage() {
   return (
@@ -22,14 +24,19 @@ export default function HomePage() {
           fill
           priority
           sizes="100vw"
-          className="-z-10 object-cover"
+          className="animate-kenburns -z-10 object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-espresso via-espresso/55 to-espresso/10" aria-hidden />
         <Container className="pb-14 pt-32 sm:pb-20 lg:pb-24">
           <Reveal>
             <p className="mb-4 text-xs font-semibold uppercase tracking-eyebrow text-caramel-light">Tse Addo · Accra</p>
-            <h1 className="max-w-3xl font-serif text-[2.6rem] font-medium leading-[1.02] text-cream-soft text-balance sm:text-6xl lg:text-7xl">
-              {business.tagline}
+            <h1 className="max-w-3xl font-serif text-[2.7rem] font-medium leading-[1.02] text-cream-soft sm:text-6xl lg:text-[5.5rem]">
+              <span className="sr-only">{business.tagline}</span>
+              <span aria-hidden>
+                Freshly Made.
+                <br />
+                <em className="accent-light">Made for You.</em>
+              </span>
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/85 sm:text-lg">
               From bakery favourites to satisfying meals, discover something delicious at Maa Regi.
@@ -46,6 +53,8 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <Marquee />
+
       {/* B — Brand introduction */}
       <section className="py-20 sm:py-28" aria-labelledby="intro-title">
         <Container className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
@@ -53,7 +62,7 @@ export default function HomePage() {
             <SectionHeading
               id="intro-title"
               eyebrow="Welcome to Maa Regi"
-              title="A bakery and food destination in Tse Addo, Accra."
+              title={<>A bakery and food destination in <em className="accent">Tse Addo, Accra.</em></>}
               description="From bakery treats to satisfying meals, discover a variety of flavours for everyday moments and special occasions."
             />
             <Link
@@ -93,7 +102,7 @@ export default function HomePage() {
       <section className="bg-cream-deep py-20 sm:py-28" aria-labelledby="categories-title">
         <Container>
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeading id="categories-title" eyebrow="Explore" title="Explore Our Categories" />
+            <SectionHeading id="categories-title" eyebrow="Explore" title={<>Explore Our <em className="accent">Categories</em></>} />
             <LinkButton href="/menu" variant="secondary" className="self-start sm:self-auto">
               Full menu
             </LinkButton>
@@ -113,6 +122,10 @@ export default function HomePage() {
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/25 to-transparent" aria-hidden />
+                    <div className="absolute inset-2 rounded-xl border border-cream/0 transition-colors duration-500 group-hover:border-cream/40" aria-hidden />
+                    <span className="absolute left-4 top-4 font-serif text-sm italic text-cream-soft drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)] sm:left-5 sm:top-5" aria-hidden>
+                      Nº {String(i + 1).padStart(2, "0")}
+                    </span>
                     <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
                       <h3 className="font-serif text-xl leading-tight text-cream-soft sm:text-2xl">{c.title}</h3>
                       <p className="mt-1 hidden text-sm text-cream/80 sm:block">{c.description}</p>
@@ -133,7 +146,7 @@ export default function HomePage() {
           <SectionHeading
             id="featured-title"
             eyebrow="Featured"
-            title="Favourites to start with"
+            title={<>Favourites to <em className="accent">start with</em></>}
             description={
               IS_DEMO
                 ? "A selection of items for the demonstration. Prices marked “Sample” are illustrative only; listed prices still need the owner’s confirmation."
@@ -171,16 +184,22 @@ export default function HomePage() {
                 id="menu-promo-title"
                 tone="light"
                 eyebrow="Restaurant Menu"
-                title="Something Delicious Is Waiting."
+                title={<>Something Delicious <em className="accent-light">Is Waiting.</em></>}
                 description="Explore the menu and find something to enjoy."
               />
-              <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-cream/75">
-                {["Local meals & combos", "Rice dishes", "Grilled food", "Soups & stews", "Noodles & pasta", "Snacks & beverages"].map((t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-caramel" aria-hidden />
-                    {t}
-                  </li>
-                ))}
+              <ul className="mt-8 max-w-md space-y-2.5 text-[0.95rem] text-cream/85" aria-label="Menu categories">
+                {menuCategories.slice(0, 7).map((c) => {
+                  const n = menuProducts.filter((p) => p.category === c.id).length;
+                  return (
+                    <li key={c.id}>
+                      <Link href={`/menu?category=${c.id}`} className="group flex items-baseline gap-2 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-caramel">
+                        <span className="font-serif text-lg">{c.label}</span>
+                        <span className="min-w-6 flex-1 translate-y-[-3px] border-b border-dotted border-cream/30" aria-hidden />
+                        <span className="text-xs tabular-nums text-caramel-light">{n} {n === 1 ? "item" : "items"}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
               <LinkButton href="/menu" variant="light" size="lg" className="mt-10">
                 View Full Menu <ArrowRight className="h-4 w-4" aria-hidden />
@@ -208,7 +227,7 @@ export default function HomePage() {
             <SectionHeading
               id="bakery-title"
               eyebrow="The Bakery"
-              title="Your Bakery Favourites, All in One Place."
+              title={<>Your Bakery Favourites, <em className="accent">All in One Place.</em></>}
               description="Bread for the week, cakes for celebrations, pastries and meat pies for the in-between moments."
             />
             <div className="mt-8 flex flex-wrap gap-3">
@@ -233,7 +252,7 @@ export default function HomePage() {
               id="catering-title"
               tone="light"
               eyebrow="Catering"
-              title="Planning Something Special?"
+              title={<>Planning Something <em className="accent-light">Special?</em></>}
               description="Get in touch to discuss food for your next gathering or event."
             />
             <LinkButton href="/catering#quote" variant="light" size="lg" className="mt-10">
@@ -247,7 +266,7 @@ export default function HomePage() {
       <section className="py-20 sm:py-28" aria-labelledby="location-title">
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-center lg:gap-16">
           <div>
-            <SectionHeading id="location-title" eyebrow="Visit" title="Find us in Tse Addo" />
+            <SectionHeading id="location-title" eyebrow="Visit" title={<>Find us in <em className="accent">Tse Addo</em></>} />
             <p className="mt-6 flex items-start gap-3 text-lg text-espresso">
               <MapPin className="mt-1 h-5 w-5 shrink-0 text-terracotta" aria-hidden />
               <span>
@@ -275,10 +294,11 @@ export default function HomePage() {
             <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-caramel/15" aria-hidden />
             <div className="absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-terracotta/10" aria-hidden />
             <div className="relative">
+              <Ornament className="mb-8" />
               <SectionHeading
                 id="final-cta-title"
                 align="center"
-                title="Discover Maa Regi."
+                title={<>Discover <em className="accent">Maa Regi.</em></>}
                 description="Explore the menu, discover bakery favourites and get in touch."
               />
               <div className="mt-8 flex flex-col justify-center gap-3 min-[420px]:flex-row">

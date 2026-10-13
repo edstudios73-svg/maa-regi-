@@ -11,7 +11,7 @@ import { CartToast } from "@/components/layout/cart-toast";
 import { MobileOrderBar } from "@/components/layout/mobile-order-bar";
 import { LocalBusinessJsonLd } from "@/components/seo/local-business-jsonld";
 
-const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", axes: ["opsz"] });
+const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", axes: ["opsz"], style: ["normal", "italic"] });
 const sans = Manrope({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
 export const metadata: Metadata = {
@@ -26,15 +26,17 @@ export const metadata: Metadata = {
     type: "website",
     siteName: business.name,
     locale: "en_GH",
-    images: [{ url: "/images/hero-jollof.webp", width: 1400, height: 933, alt: "Jollof rice with grilled skewers" }],
   },
   twitter: { card: "summary_large_image" },
+  appleWebApp: { capable: true, title: business.name, statusBarStyle: "default" },
+  applicationName: business.name,
   // The concept must not be indexed or mistaken for Maa Regi's official website.
   robots: IS_DEMO ? { index: false, follow: false } : { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F7F1E8",
+  themeColor: "#5A3A28",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };

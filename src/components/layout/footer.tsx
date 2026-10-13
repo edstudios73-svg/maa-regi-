@@ -8,7 +8,7 @@ import { Wordmark } from "./wordmark";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-espresso text-cream/80">
+    <footer className="relative overflow-hidden bg-espresso text-cream/80">
       <div className="mx-auto max-w-site px-4 pb-10 pt-16 sm:px-6 lg:px-8 lg:pt-20">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
           <div className="max-w-sm">
@@ -80,7 +80,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
+        <p aria-hidden className="pointer-events-none mt-16 select-none text-center font-serif text-[22vw] font-semibold italic leading-[0.8] tracking-tight text-cream/[0.04] lg:text-[17rem]">
+          Maa Regi
+        </p>
+
+        <div className="mt-10 flex flex-col gap-3 border-t border-cream/10 pt-6 text-xs text-cream/50 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {year} Maa Regi. All rights reserved.</p>
           {IS_DEMO && <p>{studio.note}</p>}
         </div>

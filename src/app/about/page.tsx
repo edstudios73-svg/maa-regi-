@@ -47,7 +47,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Maa Regi"
-        title="Bakery, kitchen and catering in Tse Addo."
+        title={<>Bakery, kitchen and catering in <em className="accent">Tse Addo.</em></>}
         description="Maa Regi brings together bakery favourites, satisfying meals and catering for gatherings — all in one place in Tse Addo, Accra."
         image="/images/pastries.webp"
         imageAlt="An assortment of pastries and croissants in a bakery display"

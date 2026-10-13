@@ -4,7 +4,7 @@ import { Container } from "./container";
 
 type Props = {
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   description: ReactNode;
   image: string;
   imageAlt: string;

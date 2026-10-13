@@ -19,7 +19,10 @@ export const SITE_MODE: SiteMode =
 
 export const IS_DEMO = SITE_MODE === "demo";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+/** Explicit URL wins; otherwise use the Vercel production domain; otherwise local dev. */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000");
 
 export type Detail<T> = {
   value: T;

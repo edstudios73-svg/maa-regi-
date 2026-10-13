@@ -17,8 +17,10 @@ export function SectionHeading({ eyebrow, title, description, align = "left", as
   return (
     <div className={cn(align === "center" && "mx-auto text-center", "max-w-2xl", className)}>
       {eyebrow && (
-        <p className={cn("mb-3 text-xs font-semibold uppercase tracking-eyebrow", light ? "text-caramel-light" : "text-terracotta")}>
+        <p className={cn("mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-eyebrow", align === "center" && "justify-center", light ? "text-caramel-light" : "text-terracotta")}>
+          <span className="h-px w-8 bg-current opacity-60" aria-hidden />
           {eyebrow}
+          {align === "center" && <span className="h-px w-8 bg-current opacity-60" aria-hidden />}
         </p>
       )}
       <Tag

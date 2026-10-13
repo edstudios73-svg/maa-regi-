@@ -27,7 +27,7 @@ export default function CateringPage() {
     <>
       <PageHero
         eyebrow="Catering"
-        title="Planning Something Special?"
+        title={<>Planning Something <em className="accent">Special?</em></>}
         description="Get in touch to discuss food for your next gathering or event — from local favourites to bakery treats."
         image="/images/jollof-pot.webp"
         imageAlt="A large pot of jollof rice cooking outdoors for a gathering"

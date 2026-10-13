@@ -19,7 +19,7 @@ export default function BakeryPage() {
     <>
       <PageHero
         eyebrow="The Bakery"
-        title="Your Bakery Favourites, All in One Place."
+        title={<>Your Bakery Favourites, <em className="accent">All in One Place.</em></>}
         description="Bread, cakes, pastries, meat pies and other baked snacks. Search, filter and build your order."
         image="/images/bread-artisan.webp"
         imageAlt="Rows of freshly baked artisan loaves on bakery shelves"
