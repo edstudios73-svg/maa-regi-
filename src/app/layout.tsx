@@ -3,7 +3,6 @@ import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import { business, IS_DEMO, SITE_URL } from "@/config/site";
 import { CartProvider } from "@/context/cart-context";
-import { DemoBanner } from "@/components/layout/demo-banner";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CartDrawer } from "@/components/layout/cart-drawer";
@@ -56,7 +55,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <CartProvider>
-          <DemoBanner />
           <Header />
           <main id="main" className="flex-1">
             {children}

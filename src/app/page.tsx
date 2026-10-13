@@ -11,47 +11,14 @@ import { Reveal } from "@/components/ui/reveal";
 import { ProductCard } from "@/components/catalog/product-card";
 import { MapEmbed } from "@/components/ui/map-embed";
 import { Marquee } from "@/components/ui/marquee";
+import { HeroSlider } from "@/components/home/hero-slider";
 import { Ornament } from "@/components/ui/ornament";
 
 export default function HomePage() {
   return (
     <>
-      {/* A — Hero */}
-      <section className="relative isolate flex min-h-[min(88svh,760px)] items-end overflow-hidden bg-espresso">
-        <Image
-          src="/images/hero-jollof.webp"
-          alt="Jollof rice topped with grilled chicken and vegetable skewers, with grilled fish behind"
-          fill
-          priority
-          sizes="100vw"
-          className="animate-kenburns -z-10 object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-espresso via-espresso/55 to-espresso/10" aria-hidden />
-        <Container className="pb-14 pt-32 sm:pb-20 lg:pb-24">
-          <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-eyebrow text-caramel-light">Tse Addo · Accra</p>
-            <h1 className="max-w-3xl font-serif text-[2.7rem] font-medium leading-[1.02] text-cream-soft sm:text-6xl lg:text-[5.5rem]">
-              <span className="sr-only">{business.tagline}</span>
-              <span aria-hidden>
-                Freshly Made.
-                <br />
-                <em className="accent-light">Made for You.</em>
-              </span>
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/85 sm:text-lg">
-              From bakery favourites to satisfying meals, discover something delicious at Maa Regi.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 min-[420px]:flex-row">
-              <LinkButton href="/menu" variant="light" size="lg">
-                Explore Our Menu <ArrowRight className="h-4 w-4" aria-hidden />
-              </LinkButton>
-              <LinkButton href="/menu#catalogue" variant="outline-light" size="lg">
-                Order Online
-              </LinkButton>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
+      {/* A — Hero (standalone, full-screen) */}
+      <HeroSlider />
 
       <Marquee />
 

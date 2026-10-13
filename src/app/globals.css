@@ -77,3 +77,16 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee, .animate-kenburns { animation: none; }
 }
+
+@keyframes slide-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.animate-scroll-cue { animation: scroll-cue 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-cue { animation: none; }
+}
